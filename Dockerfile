@@ -1,4 +1,4 @@
-FROM debian:10.0
+FROM debian:10
 WORKDIR /root/
 
 LABEL "maintainer"="FreeHackQuest Team <freehackquest@gmail.com>"
@@ -10,8 +10,7 @@ RUN apt-get update && \
 RUN curl -sL https://deb.nodesource.com/setup_12.x -o setup_node_12x.sh && bash setup_node_12x.sh
 
 # basic libs
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     make cmake \
     gcc g++ \
     curl \
@@ -26,12 +25,16 @@ RUN apt-get update && \
     build-essential \
     nodejs
 
-RUN node --version
-RUN npm --version
+# RUN node --version
+# RUN npm --version
 
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
     libqt5sql5-mysql \
     libqt5websockets5 \
     libqt5websockets5-dev \
     qt5-default \
     qtchooser
+
+COPY ./npm-cache.sh ./npm-cache.sh
+RUN ./npm-cache.sh
+RUN apt-get clean
