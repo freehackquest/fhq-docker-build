@@ -7,7 +7,7 @@ LABEL "repository"="https://github.com/freehackquest/fhq-docker-build"
 RUN apt-get update && \
     apt-get install -y curl
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x -o setup_node_12x.sh && bash setup_node_12x.sh
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o setup_node_14x.sh && bash setup_node_14x.sh
 
 # basic libs
 RUN apt-get update && apt-get install -y --no-install-recommends \
